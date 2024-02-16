@@ -10,8 +10,7 @@
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
 
-#define AT_FUNCTION __FUNCTION__
-#define AT_LINE AT_FUNCTION ":" TOSTRING(__LINE__ " ")
+#define AT_LINE __FILE__ ":" TOSTRING(__LINE__) " "
 
 #ifdef DBG
 
@@ -25,7 +24,7 @@
  */
 #define DEBUG_ENTER_FUNCTION_NO_ARGS() \
 	do { if (DEBUG_TRACE_ENABLED)	\
-		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_FUNCTION "()\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql()); \
+		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_LINE "%s()\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql(), __func__); \
 	} while (0)
 
 /*
@@ -33,7 +32,7 @@
  */
 #define DEBUG_ENTER_FUNCTION(paramsFormat,...) \
 	do { if (DEBUG_TRACE_ENABLED)	\
-		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_FUNCTION "(" paramsFormat ")\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql(), __VA_ARGS__); \
+		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_LINE "%s(" paramsFormat ")\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql(), __func__, __VA_ARGS__); \
 	} while (0)
 
 /*
@@ -41,7 +40,7 @@
  */
 #define DEBUG_EXIT_FUNCTION(returnValueFormat,...) \
 	do { if (DEBUG_TRACE_ENABLED)	\
-		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_FUNCTION "(-):" returnValueFormat "\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql(), __VA_ARGS__); \
+		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_LINE "%s(-):" returnValueFormat "\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql(), __func__, __VA_ARGS__); \
 	} while (0)
 
 /*
@@ -50,7 +49,7 @@
  */
 #define DEBUG_EXIT_FUNCTION_VOID() \
 	do { if (DEBUG_TRACE_ENABLED)	\
-		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_FUNCTION "(-):void\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql()); \
+		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, "[%u;%u,%u]: " AT_LINE "%s(-):void\n", PtrToUlong(PsGetCurrentProcessId()), PtrToUlong(PsGetCurrentThreadId()), KeGetCurrentIrql(), __func__); \
 	} while (0)
 
 /*
@@ -58,20 +57,20 @@
  */
 #define DEBUG_PRINT_LOCATION_VOID() \
 	do { if (DEBUG_TRACE_ENABLED)	\
-		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, AT_LINE "\n");	\
+		DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, AT_LINE "%s\n", __func__);	\
 	} while (0)
 
 /*
  * Prints the source file, function name and the number of the line.
  */
 #define DEBUG_PRINT_LOCATION(format,...) \
-   DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, AT_LINE format "\n", __VA_ARGS__)
+   DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_TRACE_LEVEL, AT_LINE "%s" format "\n", __func__, __VA_ARGS__)
 
 /*
  * Macro for reporting error conditions.
  */
 #define DEBUG_ERROR(format,...) \
-   DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL, AT_LINE " ERROR: " format "\n", __VA_ARGS__); \
+   DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL, AT_LINE "%s ERROR: " format "\n", __func__, __VA_ARGS__); \
  //  __debugbreak() \
 
 
@@ -100,7 +99,7 @@
  * Macro for reporting error conditions.
  */
 #define DEBUG_ERROR(format,...) \
-   DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL, AT_LINE format "\n", __VA_ARGS__)
+   DbgPrintEx(DPFLTR_DEFAULT_ID, DPFLTR_ERROR_LEVEL, AT_LINE "%s" format "\n", __func__, __VA_ARGS__)
 
 #endif // ifdef _DEBUG
 
