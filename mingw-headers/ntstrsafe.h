@@ -114,6 +114,7 @@ NTSTRSAFEDDI RtlStringVPrintfExWorkerA(NTSTRSAFE_PSTR pszDest,size_t cchDest,siz
 NTSTRSAFEDDI RtlStringVPrintfExWorkerW(NTSTRSAFE_PWSTR pszDest,size_t cchDest,size_t cbDest,NTSTRSAFE_PWSTR *ppszDestEnd,size_t *pcchRemaining,unsigned __LONG32 dwFlags,NTSTRSAFE_PCWSTR pszFormat,va_list argList);
 NTSTRSAFEDDI RtlStringLengthWorkerA(NTSTRSAFE_PCSTR psz,size_t cchMax,size_t *pcchLength);
 NTSTRSAFEDDI RtlStringLengthWorkerW(NTSTRSAFE_PCWSTR psz,size_t cchMax,size_t *pcchLength);
+NTSTRSAFEDDIV RtlUnicodeStringPrintf(NTSTRSAFE_PSTR pszDest,NTSTRSAFE_PCSTR pszFormat,...);
 
 #define RtlStringCchCopy __MINGW_NAME_AW(RtlStringCchCopy)
 
@@ -1606,6 +1607,11 @@ NTSTRSAFEDDI RtlStringLengthWorkerW(NTSTRSAFE_PCWSTR psz,size_t cchMax,size_t *p
     if(NT_SUCCESS(hr)) *pcchLength = cchMaxPrev - cchMax;
     else *pcchLength = 0;
   }
+  return hr;
+}
+
+NTSTRSAFEDDIV RtlUnicodeStringPrintf(NTSTRSAFE_PSTR pszDest,NTSTRSAFE_PCSTR pszFormat,...) {
+  NTSTATUS hr = STATUS_SUCCESS;
   return hr;
 }
 
