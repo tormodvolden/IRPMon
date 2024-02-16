@@ -477,7 +477,9 @@ NTSTATUS QueryTokenInfo(PACCESS_TOKEN Token, PCLIENT_TOKEN_INFORMATION Info)
 			if (NT_SUCCESS(status)) {
 				userNameLen = sizeof(userNameBuffer);
 				domainNameLen = sizeof(domainNameBuffer);
+#if 0
 				status = SecLookupAccountSid(tokenUser->User.Sid, &userNameLen, userName, &domainNameLen, domainName, &Info->SidType);
+#endif
 				if (NT_SUCCESS(status)) {
 
 				}
