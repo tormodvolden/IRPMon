@@ -1,6 +1,6 @@
 
 #include <ntifs.h>
-#include <Ntddstor.h>
+#include <ntddstor.h>
 #include <fltkernel.h>
 #include "preprocessor.h"
 #include "allocator.h"

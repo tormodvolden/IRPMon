@@ -1,7 +1,7 @@
 
 #include <ntifs.h>
 #include <ntstrsafe.h>
-#include <fltKernel.h>
+#include <fltkernel.h>
 #include "preprocessor.h"
 #include "allocator.h"
 #include "hash_table.h"

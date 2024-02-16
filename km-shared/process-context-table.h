@@ -4,7 +4,7 @@
 
 
 #include <ntifs.h>
-#include <fltKernel.h>
+#include <fltkernel.h>
 #include "general-types.h"
 
 

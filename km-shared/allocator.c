@@ -22,7 +22,7 @@
  */
 
 #include <ntifs.h>
-#include <fltKernel.h>
+#include <fltkernel.h>
 #include "preprocessor.h"
 #include "allocator.h"
 
