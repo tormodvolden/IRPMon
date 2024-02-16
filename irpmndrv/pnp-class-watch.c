@@ -144,7 +144,8 @@ static NTSTATUS _InstallUninstallFilterXP(_In_ PUNICODE_STRING ClassGuid, _In_ B
 	ULONG kvfiLen = 0;
 	PKEY_VALUE_FULL_INFORMATION kvfi = NULL;
 	NTSTATUS status = STATUS_UNSUCCESSFUL;
-	DECLARE_UNICODE_STRING_SIZE(uClassKey, 256);
+	//DECLARE_UNICODE_STRING_SIZE(uClassKey, 256);
+	UNICODE_STRING uClassKey;
 	DEBUG_ENTER_FUNCTION("ClassGuid=\"%wZ\"; UpperFilter=%u; Beginning=%u; Install=%u", ClassGuid, UpperFilter, Beginning, Install);
 
 	status = RtlUnicodeStringPrintf(&uClassKey, L"\\Registry\\Machine\\SYSTEM\\ControlSet%.3u\\Control\\Class\\%wZ", _currentControlSet, ClassGuid);
@@ -297,7 +298,8 @@ NTSTATUS CWRegister(PGUID ClassGuid, BOOLEAN UpperFilter, BOOLEAN Beginning)
 			RtlSecureZeroMemory(&uGuid, sizeof(uGuid));
 			status = RtlStringFromGUID(ClassGuid, &uGuid);
 			if (NT_SUCCESS(status)) {
-				DECLARE_UNICODE_STRING_SIZE(uClassKey, 256);
+				//DECLARE_UNICODE_STRING_SIZE(uClassKey, 256);
+				UNICODE_STRING uClassKey;
 
 				rec->ClassGuidString = uGuid;
 				if (InterlockedIncrement(&_numberofClasses) == 1)
