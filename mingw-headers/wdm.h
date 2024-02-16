@@ -199,7 +199,7 @@ inline int IsEqualGUIDAligned(REFGUID guid1, REFGUID guid2)
 // Intrinsics (note: taken from our winnt.h)
 // FIXME: 64-bit
 //
-#if defined(__GNUC__)
+#if defined(__GNUC__) && __GNUC__ < 9  // FIXME or lower?
 
 static __inline__ BOOLEAN
 InterlockedBitTestAndSet(
