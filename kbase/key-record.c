@@ -6,6 +6,8 @@
 #include "value-record.h"
 #include "key-record.h"
 
+#define __try if (1)
+#define __except(x) else if (0)
 
 /************************************************************************/
 /*                   HELPER FUNCTIONS                                   */

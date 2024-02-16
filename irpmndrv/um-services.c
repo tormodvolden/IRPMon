@@ -17,6 +17,8 @@
 #include "boot-log.h"
 #include "um-services.h"
 
+#define __try if (1)
+#define __except(x) else if (0)
 
 /************************************************************************/
 /*                     GLOBAL VARIABLES                                 */

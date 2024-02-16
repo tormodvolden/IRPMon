@@ -16,6 +16,8 @@
 #include "boot-log.h"
 #include "pnp-driver-watch.h"
 
+#define __try if (1)
+#define __except(x) else if (0)
 
 /************************************************************************/
 /*                     TYPE DEFINITIONS                                 */

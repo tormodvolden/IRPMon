@@ -10,7 +10,8 @@
 #include "driver-settings.h"
 #include "data-loggers.h"
 
-
+#define __try if (1)
+#define __except(x) else if (0)
 
 /************************************************************************/
 /*               GLOBAL VARIABLES                                       */

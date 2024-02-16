@@ -14,6 +14,8 @@
 #include "devext-hooks.h"
 #include "hook-handlers.h"
 
+#define __try if (1)
+#define __except(x) else if (0)
 
 #undef DEBUG_TRACE_ENABLED
 #define DEBUG_TRACE_ENABLED 0

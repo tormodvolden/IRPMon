@@ -11,6 +11,8 @@
 #include "regman.h"
 #include "pnp-class-watch.h"
 
+#define __try if (1)
+#define __except(x) else if (0)
 
 /************************************************************************/
 /*                      GLOBAL VARIABLES                                */

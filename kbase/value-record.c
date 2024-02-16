@@ -4,6 +4,8 @@
 #include "allocator.h"
 #include "value-record.h"
 
+#define __try if (1)
+#define __except(x) else if (0)
 
 
 /************************************************************************/
