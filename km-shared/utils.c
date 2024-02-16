@@ -633,6 +633,7 @@ NTSTATUS ProcessQueryFullImageName(HANDLE ProcessHandle, POOL_TYPE PoolType, PUN
 	return status;
 }
 
+PROCESSINFOCLASS ProcessCommandLineInformation;
 
 NTSTATUS ProcessQueryCommandLine(HANDLE ProcessHandle, POOL_TYPE PoolType, PUNICODE_STRING CommandLine)
 {
