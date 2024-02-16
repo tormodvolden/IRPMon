@@ -525,7 +525,7 @@ void IRPDataLogger(PDEVICE_OBJECT DeviceObject, PIRP Irp, PIO_STACK_LOCATION Irp
 						switch (IrpStack->Parameters.QueryId.IdType) {
 							case BusQueryDeviceID:
 							case BusQueryInstanceID:
-							case BusQueryContainerID:
+							//case BusQueryContainerID:
 							case BusQueryDeviceSerialNumber:
 								Result->BufferSize = _StringSize(Result->Buffer);
 								break;
