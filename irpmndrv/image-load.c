@@ -41,15 +41,15 @@ static void _ImageNotify(PUNICODE_STRING FullImageName, HANDLE ProcessId, PIMAGE
 		ilr->ImageSize = ImageInfo->ImageSize;
 		ilr->MappedToAllPids = (ImageInfo->ImageMappedToAllPids != 0);
 		ilr->KernelDriver = (ImageInfo->SystemModeImage != 0);
-		ilr->PartialMap = (ImageInfo->ImagePartialMap != 0);
+		// ilr->PartialMap = (ImageInfo->ImagePartialMap != 0);
 		ilr->ExtraInfo = (ImageInfo->ExtendedInfoPresent != 0);
 		if (ilr->ExtraInfo) {
 			infoEx = CONTAINING_RECORD(ImageInfo, IMAGE_INFO_EX, ImageInfo);
 			ilr->FileObject = infoEx->FileObject;
 		}
 
-		ilr->SignatureType = ImageInfo->ImageSignatureType;
-		ilr->SignatureLevel = ImageInfo->ImageSignatureLevel;
+		// ilr->SignatureType = ImageInfo->ImageSignatureType;
+		// ilr->SignatureLevel = ImageInfo->ImageSignatureLevel;
 		ilr->DataSize = uImageName.Length;
 		memcpy(ilr + 1, uImageName.Buffer, uImageName.Length);
 		_SetRequestFlags(&ilr->Header, &clientInfo);
