@@ -2,8 +2,9 @@
 #include <ntifs.h>
 #include <tdikrnl.h>
 #include <bthdef.h>
-#include <BthIoctl.h>
-#include <Bthddi.h>
+//#include <BthIoctl.h>
+//#include <Bthddi.h>
+#define IOCTL_INTERNAL_BTH_SUBMIT_BRB 00410003
 #include "preprocessor.h"
 #include "allocator.h"
 #include "utils.h"
@@ -74,7 +75,7 @@ static SIZE_T _DeviceRelationSize(const DEVICE_RELATIONS *R)
 static void _ProcessBluetooth(PDEVICE_OBJECT DeviceObject, PIRP Irp, PIO_STACK_LOCATION IrpStack, BOOLEAN Completion, PDATA_LOGGER_RESULT Result)
 {
 	ULONG controlCode = 0;
-	BRB_HEADER *brbHeader = NULL;
+	//BRB_HEADER *brbHeader = NULL;
 	DEBUG_ENTER_FUNCTION("DeviceObject=0x%p; Irp=0x%p; IrpStack=0x%p; Completion=%u; Result=0x%p", DeviceObject, Irp, IrpStack, Completion, Result);
 
 	switch (IrpStack->MajorFunction) {
@@ -82,6 +83,7 @@ static void _ProcessBluetooth(PDEVICE_OBJECT DeviceObject, PIRP Irp, PIO_STACK_L
 			controlCode = IrpStack->Parameters.DeviceIoControl.IoControlCode;
 			switch (controlCode) {
 				case IOCTL_INTERNAL_BTH_SUBMIT_BRB:
+#if 0
 					brbHeader = IrpStack->Parameters.Others.Argument1;
 
 					if ((ULONG_PTR)brbHeader >= MmUserProbeAddress) {
@@ -90,6 +92,7 @@ static void _ProcessBluetooth(PDEVICE_OBJECT DeviceObject, PIRP Irp, PIO_STACK_L
 							Result->BufferSize = brbHeader->Length;
 						else Result->BufferSize = Irp->IoStatus.Information;
 					}
+#endif
 					break;
 			}
 			break;
@@ -269,6 +272,7 @@ void IRPDataLogger(PDEVICE_OBJECT DeviceObject, PIRP Irp, PIO_STACK_LOCATION Irp
 			POOL_TYPE pt = (KeGetCurrentIrql() < DISPATCH_LEVEL) ? PagedPool : NonPagedPool;
 			PREQUEST_IRP_CREATE_NAMED_PIPE_DATA buf = NULL;
 
+#if 0
 			if (!Completion && IrpStack->Parameters.CreatePipe.SecurityContext != NULL) {
 				bufSize = sizeof(REQUEST_IRP_CREATE_NAMED_PIPE_DATA);
 				buf = HeapMemoryAlloc(pt, bufSize);
@@ -280,12 +284,14 @@ void IRPDataLogger(PDEVICE_OBJECT DeviceObject, PIRP Irp, PIO_STACK_LOCATION Irp
 					Result->BufferSize = bufSize;
 				}
 			}
+#endif
 		} break;
 		case IRP_MJ_CREATE_MAILSLOT: {
 			SIZE_T bufSize = 0;
 			POOL_TYPE pt = (KeGetCurrentIrql() < DISPATCH_LEVEL) ? PagedPool : NonPagedPool;
 			PREQUEST_IRP_CREATE_MAILSLOT_DATA buf = NULL;
 
+#if 0
 			if (!Completion && IrpStack->Parameters.CreateMailslot.SecurityContext != NULL) {
 				bufSize = sizeof(REQUEST_IRP_CREATE_MAILSLOT_DATA);
 				buf = HeapMemoryAlloc(pt, bufSize);
@@ -297,6 +303,7 @@ void IRPDataLogger(PDEVICE_OBJECT DeviceObject, PIRP Irp, PIO_STACK_LOCATION Irp
 					Result->BufferSize = bufSize;
 				}
 			}
+#endif
 		} break;
 		case IRP_MJ_READ: {
 			if (Completion) {
