@@ -6,6 +6,7 @@
 #include "utils.h"
 #include "driver-settings.h"
 #include "data-loggers.h"
+#include "specstrings.h"
 #include "regman.h"
 #include "hook.h"
 #include "hook-handlers.h"

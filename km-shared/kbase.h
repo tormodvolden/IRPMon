@@ -4,6 +4,7 @@
 
 
 #include <ntifs.h>
+#include <specstrings.h>
 
 
 NTSTATUS KBaseInit(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath, PVOID Context);

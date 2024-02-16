@@ -4,6 +4,7 @@
 
 
 #include <ntifs.h>
+#include <specstrings.h>
 
 
 typedef VOID(STRING_REF_REFERENCE)(_Inout_ PVOID Object);

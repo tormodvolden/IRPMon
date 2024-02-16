@@ -1,5 +1,6 @@
 
 #include <ntifs.h>
+#include <specstrings.h>
 #include "preprocessor.h"
 #include "allocator.h"
 #include "string-ref-table.h"
