@@ -10,6 +10,7 @@ OBJS = boot-log.o data-loggers.o devext-hooks.o driver-settings.o \
 OBJS += ../km-shared/hash_table.o
 OBJS += ../km-shared/handle-table.o
 OBJS += ../km-shared/multistring.o
+OBJS += ../km-shared/modules.o
 OBJS += ../km-shared/utils.o
 OBJS += ../km-shared/allocator.o
 OBJS += ../km-shared/utils-dym-array.o

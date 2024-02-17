@@ -197,3 +197,10 @@ EXPORTS
 
 	KBaseInit
 	KBaseFinit
+
+	ModuleFrameworkFinalizeModules
+	ModuleFrameworkInit
+	ModuleFrameworkAddModules
+	ModuleFrameworkInitializeModules
+	ModuleFrameworkFinit
+	ModuleFrameworkFinit
