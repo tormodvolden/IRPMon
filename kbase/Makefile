@@ -22,6 +22,10 @@ OBJS += ../km-shared/process-context-table.o
 
 OBJS += request.o
 
+# workaround for ntstrsafe.h multiple definitions
+LDFLAGS += -Wl,-allow-multiple-definition
+#CFLAGS += -D__CRT__NO_INLINE
+
 EXE = kbase.dll
 $(EXE): kbase.def
 LDLIBS += kbase.def
