@@ -37,3 +37,6 @@ key-record.o: PREINCLUDES = -I../mingw-headers
 request.o: PREINCLUDES = -I../mingw-headers
 request.o: ../shared/request.cpp
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $^
+
+# this one must be grabbed from somewhere else
+LDLIBS += -L. -l:../fltMgr.lib

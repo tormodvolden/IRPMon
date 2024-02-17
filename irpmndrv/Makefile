@@ -12,3 +12,5 @@ EXE = irpmndrv.sys
 
 include ../common-km.mk
 
+# this one must be grabbed from somewhere else
+LDLIBS += -l:../fltMgr.lib
